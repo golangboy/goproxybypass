@@ -20,7 +20,7 @@ func (this *Socks5Ser) Start(listen string) {
 			if byProxy {
 				dial, err := proxy.SOCKS5("tcp", this.up, nil, proxy.Direct)
 				if err != nil {
-					panic(err)
+					return nil, err
 				}
 				lg.LogStringInfo("[Proxy] " + addr)
 				return dial.Dial("tcp", addr)
