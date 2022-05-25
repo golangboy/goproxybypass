@@ -35,7 +35,7 @@ func (this *DnsSer) ServeDNS(w dns.ResponseWriter, r *dns.Msg) {
 			}
 		}
 	} else {
-		rr, _, err = c.Exchange(r, "8.8.8.8:53")
+		rr, _, err = c.Exchange(r, *directDnsUpStream)
 		if err != nil {
 			return
 		}
