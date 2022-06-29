@@ -10,10 +10,17 @@ func (this *Router) Start() {
 	g := gin.Default()
 	g.GET("/add", func(context *gin.Context) {
 		domain := context.Query("d")
+		ipv4 := context.Query("v4")
+		if ipv4 != "" {
+			t.Push(ipv4)
+			lg.LogStringInfo("[Operate] Add ipv4: " + ipv4)
+			return
+		}
 		_ = domain
 		ft.Add(domain, "*")
 		lg.LogStringInfo("[Operate] Add domain: " + domain)
 	})
+
 	g.Run(this.listen)
 }
 
