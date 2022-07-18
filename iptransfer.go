@@ -16,6 +16,9 @@ func (this *IpTransfer) Push(ip string) {
 	this.l = append(this.l, ip)
 }
 func (this *IpTransfer) Exist(ip string) bool {
+	if globalProxy {
+		return true
+	}
 	for i := range this.l {
 		if this.l[i] == ip {
 			return true
