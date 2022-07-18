@@ -20,7 +20,7 @@ func (this *DnsSer) ServeDNS(w dns.ResponseWriter, r *dns.Msg) {
 	}
 	var rr *dns.Msg
 	var err error
-	if useRule {
+	if useRule || globalProxy {
 		rr, _, err = c.Exchange(r, this.up)
 		if err != nil {
 			return

@@ -10,6 +10,7 @@ var directDnsUpStream *string
 var socks5UpSteam *string
 var webAddr *string
 var socks5Addr *string
+var globalProxy bool
 
 func main() {
 	d := DnsSer{}
@@ -21,6 +22,7 @@ func main() {
 	socks5UpSteam = flag.String("s", "127.0.0.1:1080", "trust socks5 upstream")
 	webAddr = flag.String("w", ":80", "web bind address")
 	socks5Addr = flag.String("k", ":7777", "socks5 bind address")
+	globalProxy = false
 	flag.Parse()
 	d.SetUpStream(*trustDnsUpStream)
 	r.SetListen(*webAddr)

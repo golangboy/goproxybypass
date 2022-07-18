@@ -1,6 +1,9 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"strconv"
+)
 
 type Router struct {
 	listen string
@@ -19,6 +22,10 @@ func (this *Router) Start() {
 		_ = domain
 		ft.Add(domain, "*")
 		lg.LogStringInfo("[Operate] Add domain: " + domain)
+	})
+	g.GET("/switch", func(context *gin.Context) {
+		globalProxy = !globalProxy
+		context.Writer.WriteString("global proxy:" + strconv.FormatBool(globalProxy))
 	})
 
 	g.Run(this.listen)
